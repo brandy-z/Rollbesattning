@@ -1,13 +1,7 @@
 /**
- * Exempel på in- och utdatahantering för maxflödeslabben i kursen
- * ADK.
- *
- * Använder iostreams i C++.
- * Anmärkning: scanf/printf-rutinerna från C-exemplet går att använda
- * även i C++ och är ofta märkbart snabbare än cin/cout som det här
- * programmet använder.
- *
- * Author: Per Austrin
+ * n = V+1
+ * s = E+1
+ * k = m+1
  */
 
 #include <iostream>
@@ -16,66 +10,60 @@ using std::cin;
 using std::cout;
 using std::cerr;
 
-int x, y;
+int n, s, k;
+int v, e, m;
 
-void readBipartiteGraph() {
-  int e;
-  // Läs antal hörn och kanter
-  cin >> x >> y >> e;
+void readRollbesattningsProblem() {
+  cin >> n >> s >> k;
 
-  // Skriv ut flödesgrafen.
-  int s =  x+y+1;
-  int t =  x+y+2;
-  cout << x+y+2 << "\n" << s << " " << t << "\n" << e+x+y << "\n";
-
-  // Läs in kanterna
-  for (int i = 0; i < e; ++i) {
-    int a, b;
-    cin >> a >> b;
-
-    // Skriv ut kant. x-y
-    cout << a << " " << b << " " << 1 << "\n";
+  for (int i = 0; i < n; i++) {
+    int numPossibleActors;
+    cin >> numPossibleActors;
+    for (int j = 0; j < numPossibleActors; j++) {
+      int p;
+      cin >> p;
+    }
   }
 
-  // Skriv ut kanterna s-x
-  for (int i = 1; i < x+1; ++i) {
-    cout << s << " " << i << " " << 1 << "\n";
-  }
-
-  // Skriv ut kanterna y-t
-  for (int i = 1; i < y+1; ++i) {
-    cout << i+x << " " << t << " " << 1 << "\n";
+  for (int i = 0; i < s; i++) {
+    int numRolesInScene;
+    cin >> numRolesInScene;
+    for (int j = 0; j < numRolesInScene; j++) {
+      int r;
+      cin >> r;
+    }
   }
 
   // Var noggrann med att flusha utdata när flödesgrafen skrivits ut!
   cout.flush();
-
-  // Debugutskrift
-  cerr << "Skickade iväg flödesgrafen\n";
 }
 
+void readGraphColouringProblem() {
+  cin >> v >> e >> m;
+  n = v+1;
+  s = e+1;
+  k = m+1;
+  cout << n << "\n" << s << "\n" << k << "\n";
 
-void readMaxFlowSolution() {
-  int v, e, s, t, f;
-
-  // Läs in antal hörn, kanter, källa, sänka, och totalt flöde
-  // (Antal hörn, källa och sänka borde vara samma som vi i grafen vi
-  // skickade iväg)
-  cin >> v >> s >> t >> f >> e;
-
-  // Skriv ut x, x och flödete (maximala matchning).
-  cout << x << " " << y << "\n" << f << "\n";
-
-  for (int i = 0; i < e; ++i) {
-    int u, v, f;
-    // Flöde f från u till v
-    cin >> u >> v >> f;
-
-    if ((u != s) && (v != t)) {
-      // Skriv ut kant x-y.
-      cout << u << " " << v << "\n";
+  for (int i = 0; i < n; i++) {
+    //  p1, p2, … pk
+    cout << k << " ";
+    for (int j = 0; j < k; j++) {
+      cout << j+1 << " ";
     }
+    cout "\n";
   }
+
+  for (int i = 0; i < e; i++) {
+    int a, b;
+    cin >> a >> b;
+
+  }
+
+
+
+  // Var noggrann med att flusha utdata när flödesgrafen skrivits ut!
+  cout.flush();
 }
 
 
@@ -85,11 +73,9 @@ int main(void) {
   std::ios::sync_with_stdio(false);
   cin.tie(0);
 
-  readBipartiteGraph();
+  readRollbesattningsProblem();
 
-  readMaxFlowSolution();
+  readGraphColouringProblem();
 
-  // debugutskrift
-  cerr << "Bipred avslutar\n";
   return 0;
 }
