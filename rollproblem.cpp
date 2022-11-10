@@ -58,6 +58,7 @@ void readGraphColouringProblem() {
     int a, b;
     cin >> a >> b;
 
+    cout << 2 << " " << a << " " << b; 
   }
 
 
