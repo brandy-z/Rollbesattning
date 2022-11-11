@@ -41,26 +41,23 @@ void readRollbesattningsProblem() {
   cout.flush();
 }
 
-void readGraphColouringProblem() {
+int readGraphColouringProblem() {
   // Antagande
   // e > 0
   // v > 0
 
   cin >> v >> e >> m;
-  if (e < 1) {
-    int i = 0;
-    while (true) {
-      /* code */
-      i++;
-    }
-  }
-
   n = v+1;
   s = e+1;
   k = m+1;
 
-  allVertecies = new int(n+1);
-  allEdges = new int(e*2);
+  if (e < 1) {
+    // e == 0  =>  Grafen gar att farga.
+    return 0;
+  }
+
+  allVertecies = new int[n+1];
+  allEdges = new int[e*2];
   int allEdgesPointer = 0;
 
   for (int i = 0; i < e; i++) {
@@ -87,7 +84,7 @@ void readGraphColouringProblem() {
     }
   }
 
-
+  return 1;
 }
 
 void printRollbesattningsProblem() {
@@ -119,6 +116,18 @@ void printRollbesattningsProblem() {
   cout.flush();
 }
 
+void printJaInstance() {
+  //Smalest yes instance of Rollbesattnings Problem.
+  cout << 3 << "\n" << 2 << "\n" << 3 << "\n";
+  cout << 1 << " " << 1 << "\n";
+  cout << 1 << " " << 2 << "\n";
+  cout << 1 << " " << 3 << "\n";
+  cout << 2 << " " << 1 << " " << 3 << "\n";
+  cout << 2 << " " << 2 << " " << 3 << "\n";
+  
+  cout.flush();
+}
+
 
 int main(void) {
   // Två trick för att göra cin/cout lite snabbare.
@@ -128,9 +137,13 @@ int main(void) {
 
   //readRollbesattningsProblem();
 
-  readGraphColouringProblem();
+  int check = readGraphColouringProblem();
 
-  printRollbesattningsProblem();
+  if (check) {
+    printRollbesattningsProblem();
+  } else {
+    printJaInstance();
+  }
 
   return 0;
 }
